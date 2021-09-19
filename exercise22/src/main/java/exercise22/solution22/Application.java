@@ -1,5 +1,5 @@
 /*
- *  UCF COP3330 Fall 2021 Assignment 07 Solution
+ *  UCF COP3330 Fall 2021 Assignment 22 Solution
  *  Copyright 2021 Jaiden Bodah
  */
 
@@ -18,35 +18,62 @@ public class Application {
 
     /*
 create a scanner object
-    prompt for the input of three numbers
+    prompt for the input of an infinite amount of numbers
+    create command for when done inputting numbers
     store the inputs
     determine if the largest number by comparing them against each other
      print the largest number
      */
 
+    public static boolean contain(int[] nums, int x) {
+
+        for (int n : nums)
+
+            if (n == x)
+
+                return true;
+
+        return false;
+
+    }
+
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Input the first number : ");
-        int x = in.nextInt();
+        int[] nums = new int[100];
 
-        System.out.print("Input the second number: ");
-        int y = in.nextInt();
+        int count = 0;
 
-        System.out.print("Input the third number : ");
-        int z = in.nextInt();
+        int largest = 0;
 
-        if (x>y) {
-            if (x>z)
-            System.out.print("The largest number is: " + x);
-            else
-                System.out.print("The largest number is: " +z);
+        while (true) { // make it while(count<10) for entering 10 numbers
+
+            System.out.print("Enter any number (-1 to stop): ");
+
+            int x = sc.nextInt();
+
+            if (x == -1)
+
+                break;
+
+            if (contain(nums, x)) {
+
+                System.out.println("Number already entered. Please Enter a different number!!");
+
+                continue;
+
+            }
+
+            nums[count++] = x;
+
+            largest = Math.max(x, largest);
+
         }
-        else if (y>z)
-        System.out.print("The largest number is: " +y);
 
-        else
-        System.out.print("The largest number is: " +z);
+        System.out.println("The largest number is " + largest);
+
+        sc.close();
+
     }
 }
